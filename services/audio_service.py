@@ -162,6 +162,10 @@ def gravar_e_transcrever(duracao_segundos, progresso=None):
         progresso(f"Gravando pelo microfone por {duracao_segundos} segundos...")
 
     try:
+        try:
+            sounddevice.default.device = (5, 7)
+        except Exception:
+            pass
         audio = sounddevice.rec(
             int(duracao_segundos * SAMPLE_RATE),
             samplerate=SAMPLE_RATE,
